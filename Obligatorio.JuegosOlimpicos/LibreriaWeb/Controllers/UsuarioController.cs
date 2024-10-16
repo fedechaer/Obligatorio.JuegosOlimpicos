@@ -79,7 +79,10 @@ namespace LibreriaWeb.Controllers
         // GET: UsuarioController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ListaUsuarioViewModel usuarioViewModel = new ListaUsuarioViewModel();
+
+
+            return View(usuarioViewModel);
         }
 
         // POST: UsuarioController/Delete/5
@@ -96,5 +99,6 @@ namespace LibreriaWeb.Controllers
                 return View();
             }
         }
+
     }
 }

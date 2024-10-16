@@ -15,15 +15,28 @@ namespace LogicaNegocio.Entidades
         public Sexo Sexo {  get; set; }       
         public Pais Pais { get; set; }
         public List<Evento> _eventos = new List<Evento>();
-
+        private string sexo;
         public PuntajeAtletaEvento? Puntaje { get; set; }
 
+        public Atleta() { }
         public Atleta(string nombreCompleto, Sexo sexo, Pais pais)
         {
             NombreCompleto = nombreCompleto;
             Sexo = sexo;
             Pais = pais;
         }
+        public Atleta(string nombreCompleto, Sexo sexo)
+        {
+            NombreCompleto = nombreCompleto;
+            Sexo = sexo;
+        }
+
+        public Atleta(string nombreCompleto, string sexo)
+        {
+            NombreCompleto = nombreCompleto;
+            this.sexo = sexo;
+        }
+
         public void Validar()
         {
             if(Pais == null)

@@ -10,8 +10,6 @@ namespace Compartido.DTO
     {
         public string NombreCompleto { get; set; }
         public string Sexo { get; set; }
-        public 
-
     }
 
 
