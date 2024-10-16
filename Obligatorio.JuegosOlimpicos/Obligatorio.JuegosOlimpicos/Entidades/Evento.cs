@@ -15,6 +15,8 @@ namespace LogicaNegocio.Entidades
 
         public List<Atleta> _atletas = new List<Atleta>();
 
+
+        private Evento() { }
         public Evento(string nombreEvento, DateTime fechaInicio, DateTime fechaFin)
         {
             NombreEvento = nombreEvento;

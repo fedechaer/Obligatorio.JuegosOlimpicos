@@ -6,9 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
-builder.Services.AddScoped<IRepositorioAtleta, RepositorioAtleta>();
-builder.Services.AddScoped<IRepositorioEvento, RepositorioEvento>();
+//builder.Services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
+//builder.Services.AddScoped<IRepositorioAtleta, RepositorioAtleta>();
+//builder.Services.AddScoped<IRepositorioEvento, RepositorioEvento>();
 string cadenaConexion = builder.Configuration.GetConnectionString("CadenaConexion");
 builder.Services.AddDbContext<LibreriaContext>(options=>options.UseSqlServer(cadenaConexion));
 

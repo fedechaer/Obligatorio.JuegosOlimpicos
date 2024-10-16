@@ -15,6 +15,7 @@ namespace LogicaNegocio.Entidades
         public int TelDelegado { get; set; }
         //public List<Atleta> _atletas = new List<Atleta>();
 
+        private Pais() { }
         public Pais(string nombre, int cantHabitantes, int telDelegado, List<Atleta> atletas)
         {
             Nombre = nombre;

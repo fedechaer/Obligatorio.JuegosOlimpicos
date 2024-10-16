@@ -20,6 +20,8 @@ namespace LogicaNegocio.Entidades
 
         public List<Evento> _eventos = new List<Evento>();
 
+
+        private Usuario() { }
         public Usuario(string email, string password, string rol)
         {
             Email = new Email(email);
