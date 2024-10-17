@@ -2,18 +2,23 @@
 using LogicaNegocio.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LogicaNegocio.Entidades
 {
-    public class Usuario
+    public class Usuario : IEquatable<Usuario>
     {
+        [Key]   
         public int Id { get; set; }
         public static int UltId;
+        [Required]
         public Email Email { get; set; }
+        [Required]
         public Password Password { get; set; }
+        [Required]
         public string Rol { get; set; }
 
         public List<Atleta> _atletas = new List<Atleta>();
@@ -42,6 +47,11 @@ namespace LogicaNegocio.Entidades
         public virtual void CreacionEvento() { }
         public virtual void AgregarDisciplina(Evento evento, Atleta atleta) { }
 
+       
 
+        public bool Equals(Usuario? other)
+        {
+            return Email == other.Email;
+        }
     }
 }

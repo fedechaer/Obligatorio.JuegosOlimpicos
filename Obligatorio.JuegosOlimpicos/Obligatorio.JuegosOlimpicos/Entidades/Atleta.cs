@@ -1,18 +1,27 @@
 ﻿using LogicaNegocio.ExcepcionesEntidades;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LogicaNegocio.Entidades
 {
+    //[PrimaryKey(nameof(Id))]
     public class Atleta
     {
+        [Key]
         public int Id { get; set; }
+        
         public static int UltId;
+        [Required]
+        [Display (Name="Nombre Completo")]
+        [StringLength(100)]
         public string NombreCompleto { get; set; }
-        public Sexo Sexo {  get; set; }       
+        [Required]
+        public Sexo Sexo {  get; set; }
+        [Required]
         public Pais Pais { get; set; }
         public List<Evento> _eventos = new List<Evento>();
         private string sexo;
