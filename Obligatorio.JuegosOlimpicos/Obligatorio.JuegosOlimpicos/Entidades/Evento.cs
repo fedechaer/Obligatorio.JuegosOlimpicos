@@ -9,6 +9,9 @@ namespace LogicaNegocio.Entidades
 {
     public class Evento
     {
+        [Key]
+        public int Id { get; set; }
+        public static int UltId;
         public List<Disciplina> Disciplina { get; set; }
         [Key]
         [Required]
