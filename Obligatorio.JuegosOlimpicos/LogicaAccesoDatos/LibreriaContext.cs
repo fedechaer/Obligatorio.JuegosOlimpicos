@@ -16,5 +16,9 @@ namespace LogicaAccesoDatos
         public DbSet<Usuario> Usuarios { get; set; }
 
         public LibreriaContext(DbContextOptions<LibreriaContext> options) : base(options) { }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

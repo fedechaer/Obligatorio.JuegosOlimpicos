@@ -14,6 +14,7 @@ namespace LogicaNegocio.Entidades
         public NombreDisciplina NombreDescriptivo { get; set; }
         public DateTime AnioInclusion { get; set; }
 
+        public Disciplina() { }
         public Disciplina(string nombreDescriptivo, DateTime anioInclusion)
         {
             NombreDescriptivo = new NombreDisciplina(nombreDescriptivo);

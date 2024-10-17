@@ -13,7 +13,6 @@ namespace LogicaNegocio.Entidades
         public int Id { get; set; }
         public static int UltId;
         public List<Disciplina> Disciplina { get; set; }
-        [Key]
         [Required]
         [Display(Name ="Nombre del Evento")]
         [StringLength(100)]
