@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.InterfacesRepositorios
 {
-    internal class IRepositorioUsuario : IRepositorio<Usuario>
+    public interface IRepositorioUsuario : IRepositorio<Usuario>
     {
         public void Add(Usuario item)
         {

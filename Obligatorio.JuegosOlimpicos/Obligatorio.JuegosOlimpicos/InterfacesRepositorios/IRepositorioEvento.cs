@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.InterfacesRepositorios
 {
-    internal class IRepositorioEvento : IRepositorio<Evento>
+    public interface IRepositorioEvento : IRepositorio<Evento>
     {
         public void Add(Evento item)
         {

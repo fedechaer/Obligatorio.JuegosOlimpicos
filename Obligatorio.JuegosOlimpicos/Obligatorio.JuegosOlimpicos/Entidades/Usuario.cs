@@ -1,4 +1,5 @@
 ﻿using LogicaNegocio.ExcepcionesEntidades;
+using LogicaNegocio.InterfacesEntidades;
 using LogicaNegocio.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.Entidades
 {
-    public class Usuario
+    public class Usuario : IEntity
     {
         [Key]   
         public int Id { get; set; }
@@ -32,6 +33,12 @@ namespace LogicaNegocio.Entidades
             Password = new Password(password);
             Rol = rol;
             Validar();
+        }
+        public Usuario(string email, string password, string rol)
+        {
+            Email = new Email(email);
+            Password = new Password(password);
+            this.Rol = Rol;
         }
 
        
@@ -67,5 +74,7 @@ namespace LogicaNegocio.Entidades
         {
             return Email == other.Email;
         }
+
+
     }
 }

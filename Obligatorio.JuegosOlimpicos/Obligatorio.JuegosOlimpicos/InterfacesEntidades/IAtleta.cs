@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.InterfacesEntidades
 {
-    internal class IAtleta
+    public interface IAtleta : IEntity
     {
     }
 }

@@ -29,13 +29,14 @@ namespace LogicaNegocio.Entidades
         private string sexo;
         public PuntajeAtletaEvento? Puntaje { get; set; }
 
-        private Atleta() { }
+        private Atleta(string nombreCompleto) { }
         public Atleta(string nombre, string apellido, Sexo sexo, Pais pais)
         {
             Nombre = nombre;
             Apellido = apellido;
             Sexo = sexo;
             Pais = pais;
+            Validar();
         }
         public Atleta(string nombre, string apellido, Sexo sexo)
         {

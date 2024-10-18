@@ -9,17 +9,16 @@ using System.Threading.Tasks;
 
 namespace Compartido.Mappers
 {
-    public class MapperAtleta
+    public class MapperUsuario
     {
 
-        public static Atleta DTOAtletaToAtleta( AtletaDTO atletaDTO )
+        public static Usuario DTOUsuarioToUsuario(UsuarioDTO usuarioDTO)
         {
-            if( atletaDTO == null)
+            if (usuarioDTO == null)
             {
-                throw new AtletaException("Los datos no son correctos");
+                throw new UsuarioException("Los datos no son correctos");
             }
-            return new Atleta(atletaDTO.Nombre,atletaDTO.Apellido,atletaDTO.Sexo);
+            return new Usuario(usuarioDTO.Email, usuarioDTO.Password, usuarioDTO.Rol);
         }
-    
     }
 }

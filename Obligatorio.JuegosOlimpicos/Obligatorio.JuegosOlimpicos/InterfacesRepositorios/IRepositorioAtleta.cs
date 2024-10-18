@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.InterfacesRepositorios
 {
-    internal class IRepositorioAtleta : IRepositorio<Atleta>
+    public interface IRepositorioAtleta : IRepositorio<Atleta>
     {
         public void Add(Atleta item)
         {

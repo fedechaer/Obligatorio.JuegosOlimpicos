@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.InterfacesEntidades
 {
-    public interface IEvento : IEntity
+    public interface IEntity
     {
     }
 }

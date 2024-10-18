@@ -17,8 +17,6 @@ namespace LogicaAccesoDatos.Repositorios
         {
             if (!Usuarios.Contains(usuario))
             {
-                usuario.Id = Usuario.UltId;
-                Usuario.UltId++;
                 Usuarios.Add(usuario);
             }
         }
