@@ -1,5 +1,6 @@
 ﻿using LogicaNegocio.Entidades;
 using LogicaNegocio.ExcepcionesEntidades;
+using LogicaNegocio.InterfacesRepositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace LogicaAccesoDatos.Repositorios
 {
-    public class RepositorioAtleta
+    public class RepositorioAtleta : IRepositorioAtleta
     {
 
         public static List<Atleta> Atletas = new List<Atleta>();
-
+        
 
         public void Add(Atleta atleta)
         {

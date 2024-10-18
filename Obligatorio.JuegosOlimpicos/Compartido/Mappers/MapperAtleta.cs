@@ -20,6 +20,19 @@ namespace Compartido.Mappers
             }
             return new Atleta(atletaDTO.Nombre,atletaDTO.Apellido,atletaDTO.Sexo);
         }
+
+        public static IEnumerable<AtletaListadoDTO> ListAtletaToListAtletaDTO(IEnumerable<Atleta>Atletas)
+        {
+            return Atletas.Select(static a => new AtletaListadoDTO()
+            {
+                Nombre = a.Nombre,
+                Apellido = a.Apellido,
+                Sexo = a.Sexo,
+                Pais = a.Pais,
+                Evento = a.Evento
+            });
+        }
+
     
     }
 }

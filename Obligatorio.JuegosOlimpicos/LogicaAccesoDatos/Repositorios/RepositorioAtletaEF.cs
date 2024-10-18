@@ -8,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace LogicaAccesoDatos.Repositorios
 {
-    public class RepositorioEvento : IRepositorioEvento
+    public class RepositorioAtletaEF : IRepositorioAtleta
     {
-        public void Add(Evento item)
+        public LibreriaContext Contexto { get; set; }
+        
+        public RepositorioAtletaEF(LibreriaContext contexto)
+        {
+            Contexto = contexto;
+        }
+        public void Add(Atleta item)
         {
             throw new NotImplementedException();
         }
@@ -20,17 +26,17 @@ namespace LogicaAccesoDatos.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Evento> FindAll()
+        public IEnumerable<Atleta> FindAll()
         {
-            throw new NotImplementedException();
+            return Contexto.Atletas;
         }
 
-        public Evento FindById(int id)
+        public Atleta FindById(int id)
         {
-            throw new NotImplementedException();
+            return Contexto.Atletas.Where(a => a.Id == id).SingleOrDefault();
         }
 
-        public void Update(Evento item, int id)
+        public void Update(Atleta item, int id)
         {
             throw new NotImplementedException();
         }

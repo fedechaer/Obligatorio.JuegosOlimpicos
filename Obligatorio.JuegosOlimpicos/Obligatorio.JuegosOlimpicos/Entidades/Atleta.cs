@@ -1,11 +1,5 @@
 ﻿using LogicaNegocio.ExcepcionesEntidades;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LogicaNegocio.Entidades
 {
@@ -29,7 +23,7 @@ namespace LogicaNegocio.Entidades
         private string sexo;
         public PuntajeAtletaEvento? Puntaje { get; set; }
 
-        private Atleta(string nombreCompleto) { }
+        private Atleta(string nombre, string apellido) { }
         public Atleta(string nombre, string apellido, Sexo sexo, Pais pais)
         {
             Nombre = nombre;
