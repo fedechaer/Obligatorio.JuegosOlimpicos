@@ -12,6 +12,7 @@ namespace LogicaAccesoDatos.Repositorios
     {
         public static List<Usuario> Usuarios = new List<Usuario>();
 
+
         public void Add(Usuario usuario)
         {
             if (!Usuarios.Contains(usuario))

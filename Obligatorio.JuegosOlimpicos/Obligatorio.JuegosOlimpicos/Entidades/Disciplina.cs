@@ -10,12 +10,11 @@ namespace LogicaNegocio.Entidades
     public class Disciplina
     {
         public int Id { get; set; }
-        public static int UltId;
         public NombreDisciplina NombreDescriptivo { get; set; }
-        public DateTime AnioInclusion { get; set; }
+        public int AnioInclusion { get; set; }
 
         public Disciplina() { }
-        public Disciplina(string nombreDescriptivo, DateTime anioInclusion)
+        public Disciplina(string nombreDescriptivo, int anioInclusion)
         {
             NombreDescriptivo = new NombreDisciplina(nombreDescriptivo);
             AnioInclusion = anioInclusion;

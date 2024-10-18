@@ -9,17 +9,16 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.Entidades
 {
-    public class Usuario : IEquatable<Usuario>
+    public class Usuario
     {
         [Key]   
         public int Id { get; set; }
-        public static int UltId;
         [Required]
         public Email Email { get; set; }
         [Required]
         public Password Password { get; set; }
         [Required]
-        public string Rol { get; set; }
+        public Rol Rol { get; set; }
 
         public List<Atleta> _atletas = new List<Atleta>();
 
@@ -27,7 +26,7 @@ namespace LogicaNegocio.Entidades
 
 
         private Usuario() { }
-        public Usuario(string email, string password, string rol)
+        public Usuario(string email, string password, Rol rol)
         {
             Email = new Email(email);
             Password = new Password(password);
@@ -38,17 +37,32 @@ namespace LogicaNegocio.Entidades
        
         public void Validar()
         {
-            if (!Rol.Trim().ToUpper().Equals("Administrador") || !Rol.Trim().ToUpper().Equals("Digitador"))
+            if (!Rol.Equals("Administrador") || !Rol.Equals("Digitador"))
             {
                 throw new UsuarioException("El rol no es valido");
             }
         }
 
-        public virtual void CreacionEvento() { }
-        public virtual void AgregarDisciplina(Evento evento, Atleta atleta) { }
-
-       
-
+        public void CreacionEvento(string nombre, DateTime fechaInicio, DateTime fechaFin)
+        {
+            if (_eventos.Equals(nombre))
+            {
+                throw new UsuarioException("Existe un evento con ese nombre");
+            }
+            Evento nuevoEvento = new Evento(nombre, fechaInicio, fechaFin);
+            _eventos.Add(nuevoEvento);
+        }
+        public void AgregarDisciplina(Evento evento, Atleta atleta)
+        {
+            if (!atleta._eventos.Contains(evento))
+            {
+                atleta._eventos.Add(evento);
+            }
+            else
+            {
+                throw new Exception("Ya participa del evento");
+            }
+        }
         public bool Equals(Usuario? other)
         {
             return Email == other.Email;

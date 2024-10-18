@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LogicaNegocio.Entidades
 {
@@ -14,11 +15,12 @@ namespace LogicaNegocio.Entidades
         [Key]
         public int Id { get; set; }
         
-        public static int UltId;
         [Required]
-        [Display (Name="Nombre Completo")]
         [StringLength(100)]
-        public string NombreCompleto { get; set; }
+        public string Nombre { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Apellido { get; set; }
         [Required]
         public Sexo Sexo {  get; set; }
         [Required]
@@ -28,21 +30,24 @@ namespace LogicaNegocio.Entidades
         public PuntajeAtletaEvento? Puntaje { get; set; }
 
         private Atleta() { }
-        public Atleta(string nombreCompleto, Sexo sexo, Pais pais)
+        public Atleta(string nombre, string apellido, Sexo sexo, Pais pais)
         {
-            NombreCompleto = nombreCompleto;
+            Nombre = nombre;
+            Apellido = apellido;
             Sexo = sexo;
             Pais = pais;
         }
-        public Atleta(string nombreCompleto, Sexo sexo)
+        public Atleta(string nombre, string apellido, Sexo sexo)
         {
-            NombreCompleto = nombreCompleto;
+            Nombre = nombre;
+            Apellido = apellido;
             Sexo = sexo;
         }
 
-        public Atleta(string nombreCompleto, string sexo)
+        public Atleta(string nombre, string apellido, string sexo)
         {
-            NombreCompleto = nombreCompleto;
+            Nombre = nombre;
+            Apellido = apellido;
             this.sexo = sexo;
         }
 

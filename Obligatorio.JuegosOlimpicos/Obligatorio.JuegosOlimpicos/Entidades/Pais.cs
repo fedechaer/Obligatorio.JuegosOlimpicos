@@ -11,17 +11,16 @@ namespace LogicaNegocio.Entidades
     {
         [Key]
         public int Id { get; set; }
-        public static int UltId;
         [Required]
-        public string Nombre { get; set; }
         public int CantHabitantes { get; set; }
+        public string NomDelegado { get; set; }
         public int TelDelegado { get; set; }
         //public List<Atleta> _atletas = new List<Atleta>();
 
         private Pais() { }
-        public Pais(string nombre, int cantHabitantes, int telDelegado, List<Atleta> atletas)
+        public Pais(int cantHabitantes, string nomDelegado, int telDelegado, List<Atleta> atletas)
         {
-            Nombre = nombre;
+            NomDelegado = nomDelegado;
             CantHabitantes = cantHabitantes;
             TelDelegado = telDelegado;
         }

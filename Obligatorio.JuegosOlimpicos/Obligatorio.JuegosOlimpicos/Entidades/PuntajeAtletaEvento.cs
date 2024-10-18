@@ -12,7 +12,6 @@ namespace LogicaNegocio.Entidades
     {
         [Key]
         public int IdPuntajeAtletaEvento {  get; set; }
-        public static int UltId;
         public decimal Puntaje { get; set; }
         [ForeignKey(nameof(Atleta))]
         public int IdAtleta { get; set; }
