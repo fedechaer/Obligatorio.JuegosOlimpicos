@@ -3,6 +3,7 @@ using LogicaAplicacion.ImplementacionCasosDeUso.Usuario;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.ExcepcionesEntidades;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibreriaWeb.Controllers
@@ -10,6 +11,10 @@ namespace LibreriaWeb.Controllers
     public class UsuarioController : Controller
     {
         public AltaUsuario AltaUsuario { get; set; } = new AltaUsuario();
+        private readonly UserManager<Usuario> _userManager;
+        private readonly SignInManager<Usuario> _signInManager;
+        
+
         // GET: UsuarioController
         public ActionResult Index()
         {
@@ -100,5 +105,46 @@ namespace LibreriaWeb.Controllers
             }
         }
 
+
+        //POST : Usuario/Login
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        // POST: Usuario/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(UsuarioViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                ModelState.AddModelError(string.Empty, "Login inválido.");
+            }
+            return View(model);
+        }
+
+        // GET: Usuario/Logout
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Usuario");
+        }
+
+        public IActionResult AccesoDenegado()
+        {
+            return View();
+        }
     }
 }

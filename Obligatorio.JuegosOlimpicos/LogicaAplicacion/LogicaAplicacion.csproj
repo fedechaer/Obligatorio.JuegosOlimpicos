@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Compartido\Compartido.csproj" />
     <ProjectReference Include="..\LogicaAccesoDatos\LogicaAccesoDatos.csproj" />
     <ProjectReference Include="..\Obligatorio.JuegosOlimpicos\LogicaNegocio.csproj" />
   </ItemGroup>

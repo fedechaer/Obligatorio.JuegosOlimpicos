@@ -1,4 +1,5 @@
-﻿using LogicaAccesoDatos.Repositorios;
+﻿using Compartido.Mappers;
+using LogicaAccesoDatos.Repositorios;
 using LogicaAplicacion.InterfacesCasosDeUso.Atleta;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.InterfacesRepositorios;
@@ -23,7 +24,7 @@ namespace LogicaAplicacion.ImplementacionCasosDeUso
         IEnumerable<IListadoAtletas> IListadoAtletas.Ejecutar()
         {
             IEnumerable<Atleta> Atletas = RepoAtletas.FindAll();
-            return MapperAtleta.Lista
+            return MapperAtleta.ListAtletaToListAtletaDTO(IListadoAtletas);
         }
     }
 
