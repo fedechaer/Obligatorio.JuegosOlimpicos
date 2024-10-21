@@ -27,9 +27,9 @@ namespace Compartido.Mappers
             {
                 Nombre = a.Nombre,
                 Apellido = a.Apellido,
-                Sexo = a.Sexo,
-                Pais = a.Pais,
-                Evento = a.Evento
+                Sexo = a.Sexo.ToString(),
+                Pais = a.Pais.ToString(),
+                Evento = a._eventos.ToString()
             });
         }
 
