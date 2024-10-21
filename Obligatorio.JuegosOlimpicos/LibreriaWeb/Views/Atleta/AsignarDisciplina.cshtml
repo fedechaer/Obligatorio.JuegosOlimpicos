@@ -1,5 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Agregar Disciplina";
+﻿@model LibreriaWeb.Models.Atleta.AtletaViewModel
+
+
+@{
+    ViewData["Title"] = "AsignarDisciplina";
 }
 
          <h2>Asignar disciplinas a @Model.Nombre @Model.Apellido</h2>
@@ -9,9 +12,9 @@
              <div>
                  <label>Disciplinas actuales</label>
                  <ul>
-                     @foreach (var disciplina in Model.DisciplinasActuales)
+                     @foreach (var disciplina in Model.Disciplinas)
             {
-                <li>@disciplina.Nombre</li>
+                <li>@disciplina.NombreDescriptivo</li>
             }
         </ul>
     </div>
@@ -21,7 +24,7 @@
         <select name="NuevasDisciplinasId" multiple="multiple" class="form-control">
             @foreach (var disciplina in Model.TodasLasDisciplinas)
             {
-                <option value="@disciplina.Id">@disciplina.Nombre</option>
+                <option value="@disciplina.Id">@disciplina.NombreDescriptivo</option>
             }
         </select>
     </div>
