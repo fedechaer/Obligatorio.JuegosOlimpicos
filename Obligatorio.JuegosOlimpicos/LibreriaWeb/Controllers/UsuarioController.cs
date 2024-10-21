@@ -29,7 +29,7 @@ namespace LibreriaWeb.Controllers
 
             public Task<IActionResult> CrearUsuario(UsuarioViewModel model)
             {
-                return CrearUsuario(model, usuario);
+                return CrearUsuario(model);
             }
         }
         [HttpPost]
@@ -90,7 +90,7 @@ namespace LibreriaWeb.Controllers
                     AltaUsuario.Ejecutar(usuario);
                 }
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch (UsuarioException ex)
             {
@@ -117,7 +117,7 @@ namespace LibreriaWeb.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -141,7 +141,7 @@ namespace LibreriaWeb.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {

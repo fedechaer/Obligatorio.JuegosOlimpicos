@@ -1,4 +1,5 @@
 ﻿using LogicaAccesoDatos.Repositorios;
+using LogicaNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,6 @@ namespace LogicaAplicacion.ImplementacionCasosDeUso.Usuario
 {
     public class BuscarUsuario
     {
-
         public RepositorioUsuario RepoUsuario { get; set; }
         public static List<RepositorioUsuario> Usuarios = new List<RepositorioUsuario>();
         public BuscarUsuario (RepositorioUsuario repoUsuario)
@@ -17,28 +17,11 @@ namespace LogicaAplicacion.ImplementacionCasosDeUso.Usuario
             RepoUsuario = repoUsuario;
         }
 
-        public void Ejecutar(RepositorioUsuario usuario)
+        public void Ejecutar(int usuarioId)
         {
             //Usuario usuario = RepoUsuario.FindById(usuario.UsuarioId);
-            usuario = RepoUsuario.FindById(usuario.UsuarioId);
+            Usuario usuario = RepoUsuario.FindById(usuarioId);
 
         }
-
-        public RepositorioUsuario FindById(int Id)
-        {
-            RepositorioUsuario usuario = null;
-            int i = 0;
-            while (i < Usuarios.Count && usuario == null)
-            {
-                if (Usuarios[i].Id == Id)
-                {
-                    usuario = Usuarios[i];
-                }
-                i++;
-            }
-            return usuario;
-        }
-         
-
     }
 }

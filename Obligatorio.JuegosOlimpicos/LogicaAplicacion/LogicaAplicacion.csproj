@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Obligatorio.JuegosOlimpicos\LogicaNegocio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="InterfacesCasosDeUso\Usuario\" />
+  </ItemGroup>
+
 </Project>

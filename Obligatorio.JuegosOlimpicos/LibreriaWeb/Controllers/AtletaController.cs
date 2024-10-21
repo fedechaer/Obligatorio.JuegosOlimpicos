@@ -30,7 +30,7 @@ namespace LibreriaWeb.Controllers
                 Id = atleta.Id,
                 Nombre = atleta.Nombre,
                 Apellido = atleta.Apellido,
-                Disciplinas = atleta._eventos[Disciplina]
+                Disciplinas = atleta._disciplinas
             };
 
                 return View(viewModel);
@@ -41,12 +41,12 @@ namespace LibreriaWeb.Controllers
             {
                 var atleta = RepoAtleta.FindById(model.Id);
 
-                var nuevasDisciplinas = RepoDisciplina.FindById(model.Disciplinas.id);
+                var NuevasDisciplinas = RepoDisciplina.FindById(model.Id);
             foreach (var disciplina in RepoDisciplina.FindAll())
                 {
-                    if (!atleta._eventos.Disciplina.Contains(disciplina))
+                    if (!atleta._disciplinas.Contains(disciplina))
                     {
-                        atleta._eventos.Add(disciplina);
+                        atleta._disciplinas.Add(disciplina);
                     }
                 }
 

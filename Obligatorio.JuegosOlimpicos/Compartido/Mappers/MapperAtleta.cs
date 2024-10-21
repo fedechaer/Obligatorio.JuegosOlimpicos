@@ -29,6 +29,7 @@ namespace Compartido.Mappers
                 Apellido = a.Apellido,
                 Sexo = a.Sexo.ToString(),
                 Pais = a.Pais.ToString(),
+                Disciplina = a._disciplinas.ToString(),
                 Evento = a._eventos.ToString()
             });
         }

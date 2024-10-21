@@ -19,6 +19,7 @@ namespace LogicaNegocio.Entidades
         public Sexo Sexo {  get; set; }
         [Required]
         public Pais Pais { get; set; }
+        public List<Disciplina> _disciplinas = new List<Disciplina>();
         public List<Evento> _eventos = new List<Evento>();
         private string sexo;
         public PuntajeAtletaEvento? Puntaje { get; set; }

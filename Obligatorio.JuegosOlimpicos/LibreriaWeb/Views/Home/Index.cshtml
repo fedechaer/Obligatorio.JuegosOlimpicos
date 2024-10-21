@@ -3,7 +3,14 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">BIENVENIDOS A LA GESTION DE JUEGOS OLIMPICOS</h1>
+</div>
+<div>   
+    <ul>
+        <li>@Html.ActionLink("Lista de Atletas", "Index", "Atleta")</li>
+        <li>@Html.ActionLink("Crear Nuevo Atleta", "Crear", "Atleta")</li>
+        <li>@Html.ActionLink("Asignar Disciplinas", "AsignarDisciplinas", "Atleta", new { atletaId = 1 }, null)</li>
+    </ul>
 </div>
 
+@ViewBag.Mensaje

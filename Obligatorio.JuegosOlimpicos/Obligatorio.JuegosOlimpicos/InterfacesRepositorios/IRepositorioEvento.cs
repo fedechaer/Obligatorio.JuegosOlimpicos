@@ -1,4 +1,5 @@
 ﻿using LogicaNegocio.Entidades;
+using LogicaNegocio.InterfacesEntidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,13 @@ namespace LogicaNegocio.InterfacesRepositorios
 {
     public interface IRepositorioEvento : IRepositorio<Evento>
     {
-        public void Add(Evento item)
+        public static List<Evento> Eventos = new List<Evento>();
+        public void Add(Evento evento)
         {
-            throw new NotImplementedException();
+            if (!Eventos.Contains(evento)) 
+            { 
+                Eventos.Add(evento);
+            }
         }
 
         public void Delete(int id)
@@ -21,12 +26,22 @@ namespace LogicaNegocio.InterfacesRepositorios
 
         public IEnumerable<Evento> FindAll()
         {
-            throw new NotImplementedException();
+            return Eventos;
         }
 
         public Evento FindById(int id)
         {
-            throw new NotImplementedException();
+            Evento  evento = null;
+            int i = 0;
+            while (i < Eventos.Count && evento == null)
+            {
+                if (Eventos[i].Id == id)
+                {
+                    evento = Eventos[i];
+                }
+                i++;
+            }
+            return evento;
         }
 
         public void Update(Evento item, int id)

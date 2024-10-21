@@ -12,6 +12,7 @@ namespace Compartido.DTO
         public string Apellido { get; set; }
         public string Sexo { get; set; }
         public string Pais { get; set; }
+        public string Disciplina { get; set; }
         public string Evento { get; set; }
 
 
