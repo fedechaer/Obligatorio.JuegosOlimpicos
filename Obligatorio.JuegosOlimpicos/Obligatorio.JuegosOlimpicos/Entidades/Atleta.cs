@@ -40,6 +40,13 @@ namespace LogicaNegocio.Entidades
             Sexo = sexo;
         }
 
+        public Atleta(string nombre, string apellido, string sexo, int pais)
+        {
+            Nombre = nombre;
+            Apellido = apellido;
+            this.sexo = sexo;
+            this.Pais.Id = pais;
+        }
         public Atleta(string nombre, string apellido, string sexo)
         {
             Nombre = nombre;

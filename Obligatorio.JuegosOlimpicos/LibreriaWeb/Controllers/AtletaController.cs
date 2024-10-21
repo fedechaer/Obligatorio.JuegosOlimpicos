@@ -1,30 +1,30 @@
 ﻿using LibreriaWeb.Models.Atleta;
+using LogicaAplicacion.ImplementacionCasosDeUso.Atleta;
+using LogicaAplicacion.ImplementacionCasosDeUso.Usuario;
 using LogicaNegocio.Entidades;
+using LogicaNegocio.ExcepcionesEntidades;
 using LogicaNegocio.InterfacesRepositorios;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibreriaWeb.Controllers
 {
-    [Authorize(Roles = "Digitador")]
-
     public class AtletaController : Controller
     {
+        public AltaAtleta AltaAtleta { get; set; } = new AltaAtleta();
+        private readonly IRepositorioAtleta RepoAtleta;
+        private readonly IRepositorioDisciplina RepoDisciplina;
 
-        
-            private readonly IRepositorioAtleta RepoAtleta;
-            private readonly IRepositorioDisciplina RepoDisciplina;
+        public AtletaController(IRepositorioAtleta repositorioAtleta, IRepositorioDisciplina repositorioDisciplina)
+        {
+            RepoAtleta = repositorioAtleta;
+            RepoDisciplina = repositorioDisciplina;
+        }
 
-            public AtletaController(IRepositorioAtleta repositorioAtleta, IRepositorioDisciplina repositorioDisciplina)
-            {
-                RepoAtleta = repositorioAtleta;
-                RepoDisciplina = repositorioDisciplina;
-            }
-
-            public IActionResult AsignarDisciplinas(int atletaId)
-            {
-                var atleta = RepoAtleta.FindById(atletaId);
-                var disciplinas = RepoDisciplina.FindAll();
+        public IActionResult AsignarDisciplinas(int atletaId)
+        {
+            var atleta = RepoAtleta.FindById(atletaId);
+            var disciplinas = RepoDisciplina.FindAll();
             var viewModel = new AtletaViewModel
             {
                 Id = atleta.Id,
@@ -33,26 +33,110 @@ namespace LibreriaWeb.Controllers
                 Disciplinas = atleta._disciplinas
             };
 
-                return View(viewModel);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AsignarDisciplinas(AtletaViewModel model)
+        {
+            var atleta = RepoAtleta.FindById(model.Id);
+
+            var NuevasDisciplinas = RepoDisciplina.FindById(model.Id);
+            foreach (var disciplina in RepoDisciplina.FindAll())
+            {
+                if (!atleta._disciplinas.Contains(disciplina))
+                {
+                    atleta._disciplinas.Add(disciplina);
+                }
             }
 
-            [HttpPost]
-            public IActionResult AsignarDisciplinas(AtletaViewModel model)
-            {
-                var atleta = RepoAtleta.FindById(model.Id);
+            RepoAtleta.Update(atleta, atleta.Id);
+            return RedirectToAction("Index");
+        }
+        // GET: AtletaController
+        public ActionResult Index()
+        {
+            return View();
+        }
 
-                var NuevasDisciplinas = RepoDisciplina.FindById(model.Id);
-            foreach (var disciplina in RepoDisciplina.FindAll())
+        // GET: AtletaController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: AtletaController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: AtletaController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(AtletaViewModel atletaVM)
+        {
+            try
+            {
+                if (ModelState.IsValid)
                 {
-                    if (!atleta._disciplinas.Contains(disciplina))
-                    {
-                        atleta._disciplinas.Add(disciplina);
-                    }
+                    Atleta atleta = new Atleta(atletaVM.Nombre, atletaVM.Apellido, atletaVM.Sexo, atletaVM.Pais);
+                    AltaAtleta.Ejecutar(atleta);
                 }
 
-                RepoAtleta.Update(atleta, atleta.Id);
                 return RedirectToAction("Index");
             }
+            catch (AtletaException ex)
+            {
+                ViewBag.Mensaje = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Mensaje = "Se produjo un error";
+            }
+            return View();
+        }
+
+        // GET: AtletaController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: AtletaController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: AtletaController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: AtletaController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
-
