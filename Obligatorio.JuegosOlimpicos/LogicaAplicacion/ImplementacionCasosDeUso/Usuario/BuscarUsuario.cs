@@ -1,5 +1,5 @@
 ﻿using LogicaAccesoDatos.Repositorios;
-using LogicaNegocio;
+using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace LogicaAplicacion.ImplementacionCasosDeUso.Usuario
         public void Ejecutar(int usuarioId)
         {
             //Usuario usuario = RepoUsuario.FindById(usuario.UsuarioId);
-            Usuario usuario = RepoUsuario.FindById(usuarioId);
+            LogicaNegocio.Entidades.Usuario usuario = RepoUsuario.FindById(usuarioId);
 
         }
     }
