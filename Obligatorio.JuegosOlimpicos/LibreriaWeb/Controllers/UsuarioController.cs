@@ -2,6 +2,7 @@
 using LogicaAplicacion.ImplementacionCasosDeUso.Usuario;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.ExcepcionesEntidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,52 @@ namespace LibreriaWeb.Controllers
     public class UsuarioController : Controller
     {
         public AltaUsuario AltaUsuario { get; set; } = new AltaUsuario();
-        private readonly UserManager<Usuario> _userManager;
-        private readonly SignInManager<Usuario> _signInManager;
-        
+        private readonly UserManager<Usuario>? _userManager;
+        private readonly SignInManager<Usuario>? _signInManager;
+
+
+
+        [Authorize(Roles = "Administrador")]
+        public class UsuariosController : Controller
+        {
+            private readonly UserManager<Usuario> _userManager;
+
+            public UsuariosController(UserManager<Usuario> userManager)
+            {
+                _userManager = userManager;
+            }
+
+            public Task<IActionResult> CrearUsuario(UsuarioViewModel model)
+            {
+                return CrearUsuario(model, usuario);
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditarUsuario(string id, EditUsuarioViewModel model)
+        {
+            var usuario = await _userManager.FindByIdAsync(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            usuario.Email = model.Email;
+            usuario.Password = model.Password;
+
+            var result = await _userManager.UpdateAsync(usuario);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
 
         // GET: UsuarioController
         public ActionResult Index()
@@ -49,7 +93,7 @@ namespace LibreriaWeb.Controllers
                 return RedirectToAction(nameof(Index));
             }
             catch (UsuarioException ex)
-            {   
+            {
                 ViewBag.Mensaje = ex.Message;
             }
             catch (Exception ex)
@@ -144,7 +188,12 @@ namespace LibreriaWeb.Controllers
 
         public IActionResult AccesoDenegado()
         {
-            return View();
+
+            {
+                return View();
+            }
         }
+
+
     }
 }

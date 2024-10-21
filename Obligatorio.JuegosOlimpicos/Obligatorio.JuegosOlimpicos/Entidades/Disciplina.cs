@@ -20,5 +20,8 @@ namespace LogicaNegocio.Entidades
             AnioInclusion = anioInclusion;
         }
         public void Validar() { }
+
+        
     }   
 }
+    

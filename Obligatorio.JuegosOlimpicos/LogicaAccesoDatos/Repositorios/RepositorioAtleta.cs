@@ -19,8 +19,6 @@ namespace LogicaAccesoDatos.Repositorios
         {
             if (!Atletas.Contains(atleta))
             {
-                atleta.Id = Atleta.UltId;
-                Atleta.UltId++;
                 Atletas.Add(atleta);
             }
         }
