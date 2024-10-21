@@ -24,7 +24,7 @@ namespace LogicaAplicacion.ImplementacionCasosDeUso
 
         IEnumerable<IListadoAtletas> IListadoAtletas.Ejecutar()
         {
-            IEnumerable<Atleta> Atletas = RepoAtletas.FindAll();
+            IEnumerable<LogicaNegocio.Entidades.Atleta> Atletas = RepoAtletas.FindAll();
             IEnumerable<IListadoAtletas> atletaDTOs = (IEnumerable<IListadoAtletas>)MapperAtleta.ListAtletaToListAtletaDTO(Atletas);
 
             return atletaDTOs;

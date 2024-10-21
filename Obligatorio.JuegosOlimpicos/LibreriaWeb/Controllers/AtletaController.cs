@@ -1,6 +1,5 @@
 ﻿using LibreriaWeb.Models.Atleta;
 using LogicaAplicacion.ImplementacionCasosDeUso.Atleta;
-using LogicaAplicacion.ImplementacionCasosDeUso.Usuario;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.ExcepcionesEntidades;
 using LogicaNegocio.InterfacesRepositorios;

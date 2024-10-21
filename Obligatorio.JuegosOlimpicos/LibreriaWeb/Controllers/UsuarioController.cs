@@ -1,7 +1,9 @@
 ﻿using LibreriaWeb.Models.Usuario;
+using LogicaAccesoDatos.Repositorios;
 using LogicaAplicacion.ImplementacionCasosDeUso.Usuario;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.ExcepcionesEntidades;
+using LogicaNegocio.InterfacesRepositorios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +14,7 @@ namespace LibreriaWeb.Controllers
     public class UsuarioController : Controller
     {
         public AltaUsuario AltaUsuario { get; set; } = new AltaUsuario();
+        private readonly IRepositorioUsuario RepoUsuario;
         private readonly UserManager<Usuario>? _userManager;
         private readonly SignInManager<Usuario>? _signInManager;
 
