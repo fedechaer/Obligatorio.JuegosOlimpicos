@@ -22,16 +22,28 @@ namespace LibreriaWeb.Controllers
 
         public IActionResult AsignarDisciplinas(int atletaId)
         {
+            
             var atleta = RepoAtleta.FindById(atletaId);
             var disciplinas = RepoDisciplina.FindAll();
-            var viewModel = new AtletaViewModel
+            AtletaViewModel viewModel = null;
+            try
+            {
+                viewModel = new AtletaViewModel
             {
                 Id = atleta.Id,
                 Nombre = atleta.Nombre,
                 Apellido = atleta.Apellido,
                 Disciplinas = atleta._disciplinas
             };
-
+            }
+            catch (AtletaException ex)
+            {
+                ViewBag.Mensaje = "Se produjo un error";
+            }
+            if(viewModel == null)
+            {
+                return RedirectToAction("ErrorPage");
+            }
             return View(viewModel);
         }
 
@@ -105,7 +117,7 @@ namespace LibreriaWeb.Controllers
         // POST: AtletaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, IRepositorioAtleta RepoAtleta)
         {
             try
             {
@@ -126,7 +138,7 @@ namespace LibreriaWeb.Controllers
         // POST: AtletaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, IRepositorioAtleta RepoAtleta)
         {
             try
             {

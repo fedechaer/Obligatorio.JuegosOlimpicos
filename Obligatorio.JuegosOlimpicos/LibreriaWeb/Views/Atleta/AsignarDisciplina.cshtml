@@ -5,29 +5,19 @@
     ViewData["Title"] = "AsignarDisciplina";
 }
 
-         <h2>Asignar disciplinas a @Model.Nombre @Model.Apellido</h2>
+    <h2>Asignar disciplinas a @Model.Nombre @Model.Apellido</h2>
 
-         <form asp-action="AsignarDisciplinas" method="post">
+    <form asp-controller="Atleta" asp-action="AsignarDisciplinas" method="post">
 
-             <div>
-                 <label>Disciplinas actuales</label>
-                 <ul>
-                     @foreach (var disciplina in Model.Disciplinas)
-            {
-                <li>@disciplina.NombreDescriptivo</li>
-            }
-        </ul>
-    </div>
+        <div>
+            <label>Nuevas disciplinas</label>
+            <select name="Disciplinas" multiple="multiple" class="form-control">
+                @foreach (var disciplina in Model.TodasLasDisciplinas)
+                {
+                    <option value="@disciplina.Id">@disciplina.NombreDescriptivo</option>
+                }
+            </select>
+        </div>
 
-    <div>
-        <label>Nuevas disciplinas</label>
-        <select name="NuevasDisciplinasId" multiple="multiple" class="form-control">
-            @foreach (var disciplina in Model.TodasLasDisciplinas)
-            {
-                <option value="@disciplina.Id">@disciplina.NombreDescriptivo</option>
-            }
-        </select>
-    </div>
-
-    <button type="submit">Guardar</button>
-</form>
+        <button class="btn btn-primary" type="submit">Guardar</button>
+    </form>
