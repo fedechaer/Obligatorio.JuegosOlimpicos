@@ -23,7 +23,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">Login</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                         </li>
 
                         @if (User.Identity.IsAuthenticated)
@@ -32,7 +32,7 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Create">Gestion Usuario</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Atleta" asp-action="CreateAtleta">Gestion Atleta</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Atleta" asp-action="Create">Crear Atleta</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Atleta" asp-action="AsignarDisciplina">Asignar Disciplina a Atleta</a>
